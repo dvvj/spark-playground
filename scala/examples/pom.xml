@@ -7,8 +7,8 @@
         <relativePath>../pom.xml</relativePath>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <name>child module 1</name>
-    <artifactId>module1</artifactId>
+    <name>Examples</name>
+    <artifactId>examples</artifactId>
   <dependencies>
       <dependency>
           <groupId>commons-io</groupId>

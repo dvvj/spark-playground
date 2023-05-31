@@ -1,8 +1,8 @@
-package org.ditw.sparkall
+package org.ditw.sparkplayground
 
 import org.apache.spark.graphx.{Edge, Graph, VertexId}
 import org.apache.spark.rdd.RDD
-import org.ditw.sparkall.utils.SparkallUtils
+import org.ditw.sparkplayground.utils.SparkallUtils
 
 import scala.collection.mutable
 

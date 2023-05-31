@@ -1,7 +1,7 @@
-package org.ditw.sparkall
+package org.ditw.sparkplayground
 
 import org.apache.spark.{SparkConf, SparkContext}
-import org.ditw.sparkall.utils.SparkallUtils
+import org.ditw.sparkplayground.utils.SparkallUtils
 
 object HelloSparkSQL {
   def main(args:Array[String]):Unit = {

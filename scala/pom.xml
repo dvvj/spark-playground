@@ -234,7 +234,7 @@
     </dependencyManagement>
 
     <modules>
-        <module>module1</module>
+        <module>examples</module>
         <module>spark-utils</module>
     </modules>
 </project>

@@ -170,7 +170,6 @@
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-core_${scala.minor.version}</artifactId>
                 <version>${spark.version}</version>
-                <scope>provided</scope>
                 <exclusions>
                     <exclusion>
                         <groupId>org.slf4j</groupId>
@@ -186,7 +185,6 @@
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-graphx_${scala.minor.version}</artifactId>
                 <version>${spark.version}</version>
-                <scope>provided</scope>
                 <exclusions>
                     <exclusion>
                         <groupId>org.slf4j</groupId>
@@ -202,7 +200,6 @@
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-sql_${scala.minor.version}</artifactId>
                 <version>${spark.version}</version>
-                <scope>provided</scope>
                 <exclusions>
                     <exclusion>
                         <groupId>org.slf4j</groupId>
@@ -218,7 +215,6 @@
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-mllib_${scala.minor.version}</artifactId>
                 <version>${spark.version}</version>
-                <scope>provided</scope>
                 <exclusions>
                     <exclusion>
                         <groupId>org.slf4j</groupId>

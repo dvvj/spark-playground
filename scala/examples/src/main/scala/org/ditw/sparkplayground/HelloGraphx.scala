@@ -9,7 +9,7 @@ import scala.collection.mutable
 object HelloGraphx {
   def main(args:Array[String]):Unit = {
 
-    val context = SparkallUtils.localContext("Hello Spark SQL")
+    val context = SparkallUtils.localContextN("Hello Spark GraphX")
 
     val users = context.parallelize(
       Seq(

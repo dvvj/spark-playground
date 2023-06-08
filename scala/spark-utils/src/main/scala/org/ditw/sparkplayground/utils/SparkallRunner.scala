@@ -7,7 +7,7 @@ abstract class SparkallRunner(val appName: String) {
   def process(session: SparkSession): Unit
 
   def run(): Unit = {
-    val session = SparkallUtils.localSession(appName)
+    val session = SparkallUtils.localSession()
 
     process(session)
 

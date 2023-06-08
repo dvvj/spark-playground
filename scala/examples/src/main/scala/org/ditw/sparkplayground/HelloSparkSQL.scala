@@ -8,7 +8,7 @@ import org.ditw.sparkplayground.utils.SparkallUtils
 object HelloSparkSQL {
   def main(args:Array[String]):Unit = {
 
-    val session = SparkallUtils.localSession("Hello Spark SQL")
+    val session = SparkallUtils.localSessionN("Hello Spark SQL")
     import session.implicits._
     val rdd = session.sparkContext.parallelize(1 to 10).map(i => (i, s"#${i}"))
     val df = rdd.toDF("index", "value")

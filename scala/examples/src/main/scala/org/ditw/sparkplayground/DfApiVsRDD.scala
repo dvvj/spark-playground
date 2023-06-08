@@ -4,7 +4,7 @@ import org.ditw.sparkplayground.utils.SparkallUtils
 
 object DfApiVsRDD {
   def main(args: Array[String]): Unit = {
-    val spark = SparkallUtils.localSession("DfApiVsRDD")
+    val spark = SparkallUtils.localSession()
 
     import spark.implicits._
     val df1 = Seq(

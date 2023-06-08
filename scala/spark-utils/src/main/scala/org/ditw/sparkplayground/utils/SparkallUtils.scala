@@ -16,8 +16,12 @@ object SparkallUtils {
     result
   }
 
-  def localContext(appName:String): SparkContext = {
+  def localContextN(appName:String): SparkContext = {
     context(appName, true)
+  }
+
+  def localContext(): SparkContext = {
+    context(getClass.getName, true)
   }
 
   def session(appName: String, isLocal: Boolean, exConfig: Map[String, String] = Map.empty): SparkSession = {
@@ -33,9 +37,14 @@ object SparkallUtils {
     result
   }
 
-  def localSession(appName: String, exConfig: Map[String, String] = Map.empty): SparkSession = {
+  def localSession(exConfig: Map[String, String] = Map.empty): SparkSession = {
+    session(getClass.getSimpleName, true, exConfig)
+  }
+
+  def localSessionN(appName: String, exConfig: Map[String, String] = Map.empty): SparkSession = {
     session(appName, true, exConfig)
   }
+
 
   def calcPartitionSize[T](rdd: RDD[T]): RDD[(Int, Long)] = {
     rdd.mapPartitionsWithIndex { (idx, iterator) =>

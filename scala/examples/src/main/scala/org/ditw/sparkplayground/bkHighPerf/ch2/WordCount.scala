@@ -24,7 +24,7 @@ object WordCount {
   }
 
   def main(args: Array[String]): Unit = {
-    val sc = SparkallUtils.localContext(this.getClass.getSimpleName)
+    val sc = SparkallUtils.localContext()
 
     val texts = Seq(
       "This is a book",

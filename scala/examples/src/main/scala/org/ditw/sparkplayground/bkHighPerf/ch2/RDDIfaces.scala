@@ -16,6 +16,12 @@ object RDDIfaces {
       println(b)
     }
   }
+
+  private def checkDep(rdd: RDD[_]): Unit = {
+    rdd.dependencies.foreach { d =>
+      println(d)
+    }
+  }
   def main(args: Array[String]): Unit = {
     val sc = SparkallUtils.localContext()
 
@@ -26,6 +32,7 @@ object RDDIfaces {
     val rdd2 = rdd1.repartition(4)
     println("------------------- rdd2")
     checkPartitions(rdd2)
+//    checkDep(rdd2)
 
     val rdd3 = rdd1.map(v => v -> v).partitionBy(new Partitioner {
       override def numPartitions: Int = 2
@@ -39,6 +46,7 @@ object RDDIfaces {
     })
     println("------------------- rdd3")
     checkPartitions(rdd3.values)
+    checkDep(rdd3)
 
 
     sc.stop()

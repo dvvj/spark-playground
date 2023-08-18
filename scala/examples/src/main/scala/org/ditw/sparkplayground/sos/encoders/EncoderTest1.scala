@@ -6,6 +6,8 @@ import org.ditw.sparkplayground.utils.SparkallUtils
 
 import scala.reflect.runtime.universe.TypeTag
 
+case class IntBool(i: Int, b: Boolean)
+case class StrStr(s1: String, s2: String)
 object EncoderTest1 {
 
   implicit def encoder[T: TypeTag]: ExpressionEncoder[T] = ExpressionEncoder()
@@ -22,7 +24,6 @@ object EncoderTest1 {
     val nul2 = slzr.apply(false)
     nul2.setNullAt(0)
     println(s"false -> null: $nul2")
-
   }
 
   private def testInt(): Unit = {
@@ -40,6 +41,21 @@ object EncoderTest1 {
 
   }
 
+  private def testIntBool(): Unit = {
+    val intEncoder = implicitly[ExpressionEncoder[IntBool]]
+
+    val slzr = intEncoder.createSerializer()
+    println(s"(10, false): ${slzr.apply(IntBool(10, false))}")
+    println(s"(-10, true): ${slzr.apply(IntBool(-10, true))}")
+    val nul1 = slzr.apply(IntBool(10, false))
+    nul1.setNullAt(0)
+    nul1.setNullAt(1)
+    println(s"(10, false) -> (null, null): $nul1")
+    val nul2 = slzr.apply(IntBool(-10, true))
+    nul2.setNullAt(0)
+    println(s"(-10, true) -> (null, true): $nul2")
+  }
+
   private def testLong(): Unit = {
     val intEncoder = implicitly[ExpressionEncoder[Long]]
 
@@ -52,7 +68,38 @@ object EncoderTest1 {
     val nul2 = slzr.apply(-10L)
     nul2.setNullAt(0)
     println(s"-10L -> null: $nul2")
+  }
 
+  private def testStr(): Unit = {
+    val boolEncoder = implicitly[ExpressionEncoder[String]]
+
+    val slzr = boolEncoder.createSerializer()
+    println(s"Ok: ${slzr.apply("Ok")}")
+    println(s" k: ${slzr.apply("k")}")
+    println(s"  : ${slzr.apply("")}")
+    val nul1 = slzr.apply("Ok")
+    nul1.setNullAt(0)
+    println(s"Ok -> null: $nul1")
+    val nul2 = slzr.apply("k")
+    nul2.setNullAt(0)
+    println(s" k -> null: $nul2")
+  }
+
+  private def testStrStr(): Unit = {
+    val boolEncoder = implicitly[ExpressionEncoder[StrStr]]
+
+    val slzr = boolEncoder.createSerializer()
+    println(s"('Ok', 'Now'): ${slzr.apply(StrStr("Ok", "Now"))}")
+    println(s"('Ok',    ''): ${slzr.apply(StrStr("Ok", ""))}")
+    println(s"('OkOkOkOk', 'Now'): ${slzr.apply(StrStr("OkOkOkOk", "Now"))}")
+    println(s"('OkOkOkOkO', 'Now'): ${slzr.apply(StrStr("OkOkOkOkO", "Now"))}")
+    val nul1 = slzr.apply(StrStr("Ok", "Now"))
+    nul1.setNullAt(0)
+    nul1.setNullAt(1)
+    println(s"('Ok', 'Now') -> (null, null): $nul1")
+    val nul2 = slzr.apply(StrStr("Ok", ""))
+    nul2.setNullAt(0)
+    println(s"('Ok',    '') -> (null, ''): $nul2")
   }
 
   def main(args: Array[String]): Unit = {
@@ -61,6 +108,13 @@ object EncoderTest1 {
     testBool()
     testInt()
     testLong()
+
+    println("=---------------")
+    testIntBool()
+    println("=---------------")
+    testStr()
+    println("=---------------")
+    testStrStr()
 
     spark.stop
 
